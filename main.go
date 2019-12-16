@@ -5,9 +5,9 @@ import (
 	"github.com/hotsnow/api"
 )
 
-//func main() {
-//	myip("http://ifconfig.co")
-//}
+func main() {
+	Getmyip("http://ifconfig.co")
+}
 
 // Getmyip
 func Getmyip(url string) string {
