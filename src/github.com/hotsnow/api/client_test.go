@@ -1,10 +1,8 @@
-package app
+package api
 
 import (
 	//"fmt"
 	"github.com/golang/mock/gomock"
-	"github.com/hotsnow/api"
-	"github.com/hotsnow/mocks"
 	"testing"
 )
 
@@ -12,7 +10,7 @@ func TestReq(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	m := mocks.NewMockClient(ctrl)
+	m := NewMockClient(ctrl)
 
 	url := "http://ifconfig.co"
 
@@ -24,7 +22,7 @@ func TestReq(t *testing.T) {
 
 	//got := Getmyip(url)
 
-	w := &api.WWW{}
+	w := WWW{}
 	got := w.Req(url)
 	if got != "1.2.3.4" {
 		t.Errorf("got = %#v; want 101", got)
