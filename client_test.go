@@ -22,10 +22,14 @@ func TestReq(t *testing.T) {
 		Return("1.2.3.4")
 		//Req(gomock.Eq(url)).
 
-	//got := Getmyip(url)
+	// failed here
+	got := Getmyip(url)
+	if got != "1.2.3.4" {
+		t.Errorf("got = %#v; want 101", got)
+	}
 
-	w := &api.WWW{}
-	got := w.Req(url)
+	// success here
+	got = api.Getweb(m, url)
 	if got != "1.2.3.4" {
 		t.Errorf("got = %#v; want 101", got)
 	}

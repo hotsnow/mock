@@ -22,8 +22,14 @@ func TestReq(t *testing.T) {
 
 	//got := Getmyip(url)
 
-	w := WWW{}
-	got := w.Req(url)
+	w := &WWW{}
+
+	got := c.Req(url)
+	if got != "1.2.3.4" {
+		t.Errorf("got = %#v; want 101", got)
+	}
+
+	got = Getweb(m, url)
 	if got != "1.2.3.4" {
 		t.Errorf("got = %#v; want 101", got)
 	}
