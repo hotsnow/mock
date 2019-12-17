@@ -18,19 +18,24 @@ func TestReq(t *testing.T) {
 
 	m.
 		EXPECT().
-		Req(gomock.Any()).
-		Return("1.2.3.4")
+		Req(gomock.Eq(url)).
+		Return("1.2.3.4").
+		AnyTimes()
 		//Req(gomock.Eq(url)).
 
 	// failed here
-	got := Getmyip(url)
+	j := job{c: m}
+
+	got := j.Getmyip(url)
 	if got != "1.2.3.4" {
 		t.Errorf("got = %#v; want 101", got)
 	}
+	t.Log("Getmyip success")
 
 	// success here
 	got = api.Getweb(m, url)
 	if got != "1.2.3.4" {
 		t.Errorf("got = %#v; want 101", got)
 	}
+	t.Log("Getweb success")
 }

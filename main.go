@@ -6,11 +6,15 @@ import (
 )
 
 func main() {
-	Getmyip("http://ifconfig.co")
+	j := job{c: &api.WWW{}}
+	j.Getmyip("http://ifconfig.co")
+}
+
+type job struct {
+	c api.Client
 }
 
 // Getmyip
-func Getmyip(url string) string {
-	w := api.WWW{}
-	return api.Getweb(&w, url)
+func (j job) Getmyip(url string) string {
+	return api.Getweb(j.c, url)
 }
