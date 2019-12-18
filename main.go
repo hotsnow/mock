@@ -6,20 +6,28 @@ import (
 )
 
 func main() {
-	j := job{c: &api.WWW{}}
-	j.Getmyip("http://ifconfig.co")
+	j := job{a: &api.NUM{}}
+	d := j.task(3)
+	fmt.Println(3, d)
 }
 
 type job struct {
-	c api.Client
+	a api.Action
 }
 
-// Getmyip
-func (j job) Getmyip(url string) string {
-	var ip string
+// double me
+func (j job) task(i int) int {
+	j.a.Double(&i)
 
-	api.Getweb(j.c, url, &ip)
-	fmt.Println(ip)
-
-	return ip
+	return i
 }
+
+//// Getmyip
+//func (j job) Getmyip(url string) string {
+//	var ip string
+//
+//	api.Getweb(j.c, url, &ip)
+//	fmt.Println(ip)
+//
+//	return ip
+//}
