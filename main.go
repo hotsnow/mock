@@ -1,7 +1,7 @@
 package app
 
 import (
-	//"fmt"
+	"fmt"
 	"github.com/hotsnow/api"
 )
 
@@ -16,5 +16,10 @@ type job struct {
 
 // Getmyip
 func (j job) Getmyip(url string) string {
-	return api.Getweb(j.c, url)
+	var ip string
+
+	api.Getweb(j.c, url, &ip)
+	fmt.Println(ip)
+
+	return ip
 }

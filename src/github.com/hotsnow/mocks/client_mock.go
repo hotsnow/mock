@@ -33,15 +33,15 @@ func (m *MockClient) EXPECT() *MockClientMockRecorder {
 }
 
 // Req mocks base method
-func (m *MockClient) Req(url string) string {
+func (m *MockClient) Req(url string, ip *string) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Req", url)
-	ret0, _ := ret[0].(string)
+	ret := m.ctrl.Call(m, "Req", url, ip)
+	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Req indicates an expected call of Req
-func (mr *MockClientMockRecorder) Req(url interface{}) *gomock.Call {
+func (mr *MockClientMockRecorder) Req(url, ip interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Req", reflect.TypeOf((*MockClient)(nil).Req), url)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Req", reflect.TypeOf((*MockClient)(nil).Req), url, ip)
 }

@@ -8,7 +8,7 @@ import (
 
 // Client --
 type Client interface {
-	Req(url string) string
+	Req(url string, ip *string) error
 }
 
 // WWW --
@@ -16,15 +16,19 @@ type WWW struct {
 }
 
 // Req --
-func (w *WWW) Req(url string) string {
+func (w *WWW) Req(url string, ip *string) error {
 	resp, _ := http.Get(url)
 
 	body, _ := ioutil.ReadAll(resp.Body)
 
-	return string(body)
+	*ip = string(body)
+
+	return nil
 }
 
 // Getweb --
-func Getweb(c Client, url string) string {
-	return c.Req(url)
+func Getweb(c Client, url string, ip *string) error {
+	c.Req(url, ip)
+
+	return nil
 }
